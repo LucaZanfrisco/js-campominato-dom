@@ -3,7 +3,7 @@
 // Funzioni
 
 //Funzione che crea un elemento con un evento click al suo interno
-function creaElemento(tagElemento, nomeClasse, difficolta, i){
+function creaElemento(tagElemento, nomeClasse, difficolta, i,listaBombe){
     const elemento = document.createElement(tagElemento);
     elemento.classList.add(nomeClasse);
     elemento.classList.add(difficolta);
@@ -11,8 +11,6 @@ function creaElemento(tagElemento, nomeClasse, difficolta, i){
     elemento.addEventListener(
         'click',
         function(){
-            console.log(i);
-            elemento.classList.add('cliccato');
         }
     )
     return elemento;
@@ -56,11 +54,23 @@ function numeroCelle(difficolta){
 }
 
 // Funzione che tramite un ciclo crea una tipologia e numero di elementi in base a dei criteri
-function cicloCrea(classeDifficolta,maxCelle,appendino){
+function cicloCrea(classeDifficolta,maxCelle,appendino,listaBombe){
     for(let i = 1; i <= maxCelle ; i++){
-        const elemento = creaElemento('div','cella', classeDifficolta,i);
+        const elemento = creaElemento('div','cella', classeDifficolta,i,listaBombe);
         appendiElemento(elemento,appendino);
     }
+}
+
+// Funzione che genera un array di numeri randomi che non si ripetono
+function generaBomba(max, min){
+    let listaBombe = [];
+    while(listaBombe.length < 16){
+        const numRandom = Math.floor(Math.random()*(max - min +1 )) + min;  
+        if(!listaBombe.includes(numRandom)){
+            listaBombe[listaBombe.length] = numRandom;
+        }  
+    }
+    return listaBombe;
 }
 // --------
 
@@ -68,6 +78,7 @@ function cicloCrea(classeDifficolta,maxCelle,appendino){
 // Assegnazione a due variabili elementi del DOM
 const tavoloGioco = document.querySelector('.tavolo');
 const gioca = document.querySelector('.btn');
+
 
 // Evento che genera un una tabella al click del bottone gioca
 gioca.addEventListener(
@@ -81,9 +92,14 @@ gioca.addEventListener(
         // Controllo della difficolta scelta e assegnazione in delle variabili 
         const classeDifficolta = selezioneDifficolta(difficolta);
         const maxCelle = numeroCelle(difficolta);
+        
+        // Chiamata alla funzione che genera 16 numeri randomici
+        const listaBombe = generaBomba(maxCelle,1);
+        // Stampa dell'array di bombe
+        console.log(listaBombe);
 
         // chiamata alla funzione per il ciclo che crea le celle
-        cicloCrea(classeDifficolta,maxCelle,tavoloGioco);
+        cicloCrea(classeDifficolta,maxCelle,tavoloGioco,listaBombe);
     }
 )
 

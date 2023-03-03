@@ -64,7 +64,7 @@ main{
     align-content: flex-start;
 }
 .cella{
-    border: 1px solid black;
+    outline: 1px solid black;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -84,6 +84,10 @@ main{
 }
 .cliccato{
     background-color: blue;
+    color: white;
+}
+.caBoom{
+    background-color: red;
     color: white;
 }
 /* ------- */
