@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Prato Fiorito</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- /Font Awesome -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <!-- Logo e Titolo -->
+        <div class="titolo">
+            <img src="img/logo-boolean.png" alt="logo-boolean">
+            Campo Minato
+        </div>
+        <!-- Selezione della difficolta e pulsante gioca -->
+        <div class="gioca">
+            <label for="difficolta">Difficoltà:</label>
+            <select name="difficolta" id="difficolta">
+                <option value="100">Normale</option>
+                <option value="81">Difficile</option>
+                <option value="49">Impossibile</option>
+            </select>
+            <button class="btn">Gioca</button>
+        </div>
+        <!-- /Selezione della difficolta e pulsante gioca -->
+    </header>
+    <main>
+        <!-- Container centrato con le caselle del gioco -->
+        <div class="tavolo">
+        </div>
+    </main>
+    <footer>
+        <div>
+            Made with <i class="fa-solid fa-heart"></i> by <a href="#">Pino Piripotto</a>
+        </div>
+    </footer>
+    <script src="js/main.js"></script>
+</body>
+</html>

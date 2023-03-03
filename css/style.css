@@ -1,0 +1,97 @@
+/* Reset */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* ------- */
+/* Common */
+body{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+/* ------- */
+/* Header */
+header{
+    height: 6.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem;
+}
+.titolo{
+    font-size: 3.125rem;
+    height: 100%;
+    vertical-align: middle;
+}
+.titolo img{
+    height: 100%;
+    display: inline-block;
+    vertical-align: middle;
+}
+.gioca{
+    font-size: 1.25rem;
+}
+#difficolta{
+    font-size: inherit;
+    width: 200px;
+    background-color: black;
+    color: white;
+}
+.btn{
+    font-size: inherit;
+    padding: 0 .625rem;
+    border: 1px solid black;
+    border-radius: .375rem;
+}
+
+/* ------- */
+/* Main */
+main{
+    background-color: aquamarine;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.tavolo{
+    width: 37.5rem;
+    height: 37.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+.cella{
+    border: 1px solid black;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cella-10{
+    height: calc(100% / 10);
+    width: calc(100% / 10);
+}
+.cella-9{
+    width: calc((100% / 9));
+    height: calc((100% / 9));
+}
+.cella-7{
+    width: calc(100% / 7);
+    height: calc(100% / 7);
+}
+.cliccato{
+    background-color: blue;
+    color: white;
+}
+/* ------- */
+/* Footer */
+footer{
+    height: 5rem;
+    padding: 0 1.25rem;
+    display: flex;
+    align-items: center;
+}
+/* ------- */
