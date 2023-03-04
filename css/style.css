@@ -69,6 +69,7 @@ main{
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 .cella-10{
     height: calc(100% / 10);
@@ -97,5 +98,9 @@ footer{
     padding: 0 1.25rem;
     display: flex;
     align-items: center;
+}
+.punteggio{
+    font-size: 1.875rem;
+    margin: 0 auto;
 }
 /* ------- */
