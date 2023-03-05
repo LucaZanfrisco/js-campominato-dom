@@ -103,10 +103,10 @@ function logicaGioco(maxCelle, listaBombe) {
                             messaggioPunti.innerText = `Il tuo punteggio: ${punteggio}`;
                         }
                         // Se la lunghezza dell'array di celle cliccata è uguale al numero massimo di celle meno le bombe stampo un messaggio di vittoria
-                        if (celleCliccate.length === (maxCelle - 16)) {
-                            messaggioPunti.innerText = `Hai vinto con ${punteggio} punti`;
-                        }
                     }
+                }
+                if (celleCliccate.length === (maxCelle - listaBombe.length)) {
+                    messaggioPunti.innerText = `Hai vinto con ${punteggio} punti`;
                 }
             }
         )
