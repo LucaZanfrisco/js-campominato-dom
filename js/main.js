@@ -68,26 +68,63 @@ function generaBomba(max, min) {
     return listaBombe;
 }
 
-function logicaGioco(celle,maxCelle,listaBombe,punteggio,messaggioPunti){
+
+// Funzione con la logica del click alle celle 
+function logicaGioco(maxCelle, listaBombe) {
+    const messaggioPunti = document.querySelector('.punteggio');
+    let punteggio = 0; //Definizione della variabile del punteggio
+    messaggioPunti.innerText = `Punteggio iniziale: ${punteggio}`; //Definizone del messaggio dei punti
+    const celle = document.querySelectorAll('.cella'); // Selezione di tutte le celle 
+    let celleCliccate = []; // Creo un array vuoto dove inseriro le celle cliccate
+    let sconfitta = false; // Definisco e assegno una variabile di controllo
+
+    // Ciclo che assegna ad ogni cella un evento al click
     for (let i = 0; i < maxCelle; i++) {
         celle[i].addEventListener(
             'click',
-            function () {
-                const numeroCelle = Number(celle[i].innerText);
-                if (listaBombe.includes(numeroCelle)) {
-                    console.log(numeroCelle);
-                    celle[i].classList.add('caBoom');
+            function clickCella() {
+                const numeriCelle = Number(celle[i].innerText);
+                // Controllo se la cella cliccata non sia una bomba 
+                if (listaBombe.includes(numeriCelle)) {
+                    // Se la cella cliccata è auna bomba chiamo la funzione che fa uscire tutte le bombe
+                    mostraBombe(listaBombe, maxCelle,celle);
+                    // Stampa del messaggio dei punti
+                    messaggioPunti.innerText = `Hai pestato una bomba, il tuo punteggio è: ${punteggio}`;
+                    // Asseggno true ad una varibile per dopo
+                    sconfitta = true;
                 } else {
-                    celle[i].classList.add('cliccato');
-                    console.log('Non Bomba');
-                    punteggio++;
+                    // Contrllo la variabile sconfitta sia falsa quindi se non ho gia cliccato una bomba
+                    if (!sconfitta) {
+                        // Controllo se la cella che clicco non la ho gia cliccata prima
+                        if (!celleCliccate.includes(numeriCelle)) {
+                            celleCliccate.push(numeriCelle);
+                            celle[i].classList.add('cliccato');
+                            punteggio++;
+                            messaggioPunti.innerText = `Il tuo punteggio: ${punteggio}`;
+                        }
+                        // Se la lunghezza dell'array di celle cliccata è uguale al numero massimo di celle meno le bombe stampo un messaggio di vittoria
+                        if (celleCliccate.length === (maxCelle - 16)) {
+                            messaggioPunti.innerText = `Hai vinto con ${punteggio} punti`;
+                        }
+                    }
                 }
-                console.log(punteggio);
-                messaggioPunti.innerText = `Il tuo punteggio: ${punteggio}`;
             }
         )
     }
 }
+
+// Funzione che aggiunge una classe a tutte le bombe
+function mostraBombe(listaBombe, maxCelle,celle) {
+    for (let j = 0; j < listaBombe.length; j++) {
+        for (let k = 0; k < maxCelle; k++) {
+            if (listaBombe[j] === Number(celle[k].innerText)) {
+                celle[k].classList.add('caBoom');
+            }
+        }
+    }
+}
+
+
 // --------
 
 // Main
@@ -96,19 +133,20 @@ function logicaGioco(celle,maxCelle,listaBombe,punteggio,messaggioPunti){
 const tavoloGioco = document.querySelector('.tavolo');
 const gioca = document.querySelector('.btn');
 
-
 // Evento che genera un una tabella al click del bottone gioca
 gioca.addEventListener(
     'click',
     function () {
         // Svuotamento del DOM
         tavoloGioco.innerHTML = '';
+
         // Presa del valore della difficolta 
         const difficolta = document.getElementById('difficolta').value;
 
         // Controllo della difficolta scelta e assegnazione in delle variabili 
         const classeDifficolta = selezioneDifficolta(difficolta);
         const maxCelle = numeroCelle(difficolta);
+
 
         // Chiamata alla funzione che genera 16 numeri randomici
         const listaBombe = generaBomba(maxCelle, 1);
@@ -118,13 +156,12 @@ gioca.addEventListener(
         // chiamata alla funzione per il ciclo che crea le celle
         cicloCrea(classeDifficolta, maxCelle, tavoloGioco, listaBombe);
 
-        const messaggioPunti = document.querySelector('.punteggio');
-        let punteggio = 0;
-        messaggioPunti.innerText = `Punteggio iniziale: ${punteggio}`;
-        const celle = document.querySelectorAll('.cella');
-        logicaGioco(celle,maxCelle,listaBombe,punteggio,messaggioPunti);
+        // Chiamata della funzione che si accupa del funzionamento delle celle
+        logicaGioco(maxCelle, listaBombe);
+        
     }
 )
+
 
 
 

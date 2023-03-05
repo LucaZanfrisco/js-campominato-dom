@@ -64,12 +64,13 @@ main{
     align-content: flex-start;
 }
 .cella{
-    outline: 1px solid black;
+    border: 1px solid black;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    border-radius: 50%;
 }
 .cella-10{
     height: calc(100% / 10);
@@ -84,7 +85,7 @@ main{
     height: calc(100% / 7);
 }
 .cliccato{
-    background-color: blue;
+    background-color: darkblue;
     color: white;
 }
 .caBoom{
